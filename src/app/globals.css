@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-grill-green: #146c3a;
+  --color-grill-leaf: #1f8a4c;
+  --color-grill-forest: #0b3d24;
+  --color-grill-ink: #071910;
+  --color-grill-orange: #f25c05;
+  --color-grill-flame: #ff8a1f;
+  --color-grill-cream: #fff7ee;
+  --color-grill-sand: #f4e6d4;
+  --color-wa: #25d366;
+  --font-display: var(--font-oswald);
+  --font-sans: var(--font-manrope);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-grill-cream);
+  color: var(--color-grill-ink);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-oswald), Impact, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+::selection {
+  background: #f25c05;
+  color: white;
+}
+
+.grill-grid {
+  background-image:
+    linear-gradient(rgba(7, 25, 16, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7, 25, 16, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.flame-wash {
+  background:
+    radial-gradient(1200px 400px at 80% -10%, rgba(242, 92, 5, 0.35), transparent 50%),
+    radial-gradient(800px 300px at 10% 0%, rgba(20, 108, 58, 0.45), transparent 45%),
+    #071910;
+}
+
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+
+.marquee-track {
+  animation: marquee 42s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 5.75rem;
+  }
+}
