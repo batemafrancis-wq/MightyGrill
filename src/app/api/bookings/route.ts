@@ -1,4 +1,4 @@
-import { db } from "@/db";
+import { getDb } from "@/db";
 import { bookings } from "@/db/schema";
 import { ensureSeeded } from "@/db/seed";
 import { isDateInPast } from "@/lib/hours";
@@ -8,6 +8,7 @@ export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   try {
+    const db = getDb();
     await ensureSeeded();
     const body = (await request.json()) as Partial<BookingPayload> & { sourcePage?: string };
     const guestName = String(body.guestName ?? "").trim();

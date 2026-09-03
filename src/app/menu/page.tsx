@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import { MenuCatalog } from "@/components/MenuCatalog";
-import { menuItemSeeds } from "@/data/menu";
-import { db } from "@/db";
-import { menuItems } from "@/db/schema";
-import { ensureSeeded } from "@/db/seed";
+import { mockMenuItems } from "@/data/mock";
 import { seoTargets, site } from "@/lib/site";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: seoTargets.menu.title,
@@ -18,28 +13,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function MenuPage() {
-  await ensureSeeded();
-  const items = await db.select().from(menuItems).orderBy(menuItems.sortOrder);
-  const catalog =
-    items.length > 0
-      ? items
-      : menuItemSeeds.map((item, id) => ({
-          id,
-          slug: item.slug,
-          name: item.name,
-          description: item.description,
-          category: item.category,
-          priceUgx: item.priceUgx,
-          imageUrl: item.imageUrl,
-          tags: item.tags.join(","),
-          ingredients: item.ingredients,
-          allergens: item.allergens,
-          featured: item.featured,
-          available: true,
-          sortOrder: item.sortOrder,
-        }));
-
+export default function MenuPage() {
+  const catalog = mockMenuItems;
   const menuSchema = {
     "@context": "https://schema.org",
     "@type": "Menu",
